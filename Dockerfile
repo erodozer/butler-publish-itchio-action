@@ -1,4 +1,6 @@
-FROM rockylinux:8
+FROM rockylinux:9
+
+ENV BUTLER_VERSION=15.25.0
 
 LABEL "com.github.actions.name"="Butler Push"
 LABEL "com.github.actions.description"="Publishes releases to Itch.io using Butler"
@@ -8,7 +10,7 @@ LABEL "com.github.actions.color"="white"
 RUN dnf install unzip -y
 
 # Install Butler
-RUN curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default \
+RUN curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/$BUTLER_VERSION/archive/default \
     && unzip butler.zip \
     && cp butler /usr/bin \
     && chmod +x /usr/bin/butler
